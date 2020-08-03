@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Aug  3 11:05:54 2020
+
+@author: D305
+"""
+
+from mcpi.minecraft import Minecraft
+import time
+mc=Minecraft.create()
+time.sleep(5)
+
+print(mc.player.getTilePos())
+
+x,y,z=mc.player.getTilePos
+
+mc.player.setTilePos(x,y,z)
+
+t = 0
+while True:   
+    t=t+1
+    mc.postToChat("the"+str(t)+"time")
+    
