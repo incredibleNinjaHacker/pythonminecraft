@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug  5 09:09:28 2020
+
+@author: D305
+"""
+
+
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()
+x,y,z = mc.player.getTilePos()
+
+mc.setSign(x,y,z,63,0,"che-kai's","code made","sign")
+
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()
+while True:
+    hits = mc.events.pollBlockHits()
+    if len(hits) > 0:
+        hit = hits[0]
+        x, y, z = hit.pos.x ,hit.pos.y ,hit.pos.z
+        block = mc.getBlock(x,y,z)
+        print("Congrats! You just punched"+str(block))
+        mc.postToChat("Congrats! You just punched"+str(block))
+        
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()       
+while True:
+    hits = mc.events.pollProjectileHits()
+    if len(hits) > 0:
+        hit = hits[0]
+        x, y, z = hit.pos.x ,hit.pos.y ,hit.pos.z
+        mc.createExplosion(x, y, z ,5)
+        
+        
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()        
+while True:
+    hits = mc.events.pollProjectileHits()
+    if len(hits) > 0:
+        hit = hits[0]
+        x, y, z = hit.pos.x ,hit.pos.y ,hit.pos.z
+        mc.player.setTilePos(x,y,z)
+        mc.spawnEntity(x,y,z,99)
+        
+        
+pos = mc.player.getPos()
+
+
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()    
+import random
+import time
+while True:
+    x = pos.x + random.uniform(-10, 10)
+    z = pos.z + random.uniform(-10, 10)
+    y = pos.y + 30
+    mc.spawnEntity(x ,y ,z ,93)
+    time.sleep(0.1)
+    
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create() 
+
+x,y,z = mc.player.getTilePos()
+def planttree(x,y,z):
+    mc.setBlocks(x-1, y+3, z-1, x+1, y+5,z+1,169)    
+    mc.setBlocks(x,y,z,x,y+4,z,17)
+    
+planttree(x,y,z)
+
+for i in range(5):
+    for j in range(5):
+        for k in range(5):
+            planttree(x+i*5, y+j*5, z+k*5)
+
+
+    
